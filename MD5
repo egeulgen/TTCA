@@ -1,0 +1,13 @@
+33fdd8a6d95d0b2d86399888e194de80 *DESCRIPTION
+5b8fbc97d6b5ea3cfdf0048203c9cf77 *NAMESPACE
+e5898e1fc7e6e94ac7d859933c06b2be *R/TTCA.R
+40eca9f94740f337398b9844fe27b61a *data/Control.rda
+ad2ffb4029ad74b68d4472707b449975 *data/EGF.rda
+461ae8a5d36d8e74a5a9166930aec707 *data/annot.rda
+e20bf7695df98862d54c0636d382320a *data/annotation.rda
+ac0a3af982a56db18252279364677f75 *data/datalist
+340cfc75f2c41ea0c872072362a61689 *man/Control.Rd
+320a6be1d819fc0f260062ecb93f7d49 *man/EGF.Rd
+275b20122c7c18df89f386eb038da93c *man/TTCA.Rd
+a56dd3f3b578ad1231f405aec066f647 *man/annot.Rd
+0fffa0101ad2a4adcdc71602677bf1b8 *man/annotation.Rd
