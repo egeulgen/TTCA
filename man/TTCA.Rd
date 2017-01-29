@@ -10,68 +10,61 @@ TTCA(grp1, grp1.time, grp2, grp2.time, lambda = 0.6, annot = NA,
   Stimulus2 = "", S = "gene", mapGO = "", PeakMode = "norm")
 }
 \arguments{
-\item{grp1}{: Dataset with longitudinal sampled data (data.frame)}
+\item{grp1}{Data set with longitudinal sampled data (data.frame)}
 
-\item{grp1.time}{: Timepoints for Dataset 1 (vector like: c(0,0,0.5,1,2,4,6,8,12,12)}
+\item{grp1.time}{Time points for data set 1 (vector like: c(0,0,0.5,1,2,4,6,8,12,12)}
 
-\item{grp2}{: Dataset with longitudinal sampled data (data.frame) for comparison}
+\item{grp2}{Data set with longitudinal sampled data for comparison (data.frame)}
 
-\item{grp2.time}{: Timepoints for Dataset 2 (vector like: c(0,0,0.5,3,2,4,6,8,12,12,24)}
+\item{grp2.time}{Time points for data set 2 (vector like: c(0,0,0.5,3,2,4,6,8,12,12,24)}
 
-\item{lambda}{: Smoothingparameter in penalty term for fitting with quantil regression (Default: lambda=0.6 ). Find own parameter!}
+\item{lambda}{Smoothing parameter in penalty term of quantil regression (default: lambda=0.6 ). Adjust, if fit is too strict or too flexible.}
 
-\item{annot}{: Annotation for pictures and result (Data.frame with 2 columns with ID and GeneName). (Default: annot=NA)}
+\item{annot}{Annotation for pictures and result (Data.frame with 2 columns with ID and GeneName). (Default: annot=NA)}
 
-\item{annotation}{: Merges the TTCA by rowname with a table of your wish. Example: annotation<-annotation[,c("probeset_id", "gene_name","transkript_id","GO_BP","GO_CC","GO_mf")]  (default: annotation="annotation")}
+\item{annotation}{Merges the TTCA by rowname with a table of your wish. Example: annotation<-annotation[,c("probeset_id", "gene_name","transkript_id","GO_BP","GO_CC","GO_mf")]  (default: annotation="annotation")}
 
-\item{timeInt}{: Defines early, middle and late time period. Define the middle time period between 4 h and 12 h with timeInt<-c(4,12). (default: timeInt=NULL)}
+\item{timeInt}{Defines early, middle and late time period. Defines the middle time period between 4 h and 12 h with timeInt<-c(4,12). (default: timeInt=NULL)}
 
-\item{pVal}{: P-value for the local hypothesis test        (default: 0.05).}
+\item{pVal}{P-value for the local hypothesis test        (default: 0.05).}
 
-\item{codetest}{: Reduces the dataSet to 200 features for a quick pass of the program. (default: codetest=FALSE)}
+\item{codetest}{Reduces the data set to 200 features for a quick run of the program. (default: codetest=FALSE)}
 
-\item{file}{: Where the result folder should be created?   (default: file=getwd() )}
+\item{file}{Result folder will be saved at this location   (default: file=getwd() ).}
 
-\item{MaxPics}{: Limits the number of plots (default: MaxPics=10000)}
+\item{MaxPics}{Limits the number of plots (default: MaxPics=10000)}
 
-\item{Stimulus1}{: With which term the gene shall be searched in Pubmed? Stimulus1="Insulin+like+growth+factor"   ( default: Stimulus1="")}
+\item{Stimulus1}{Searches this term together with the gene name in PubMed. Stimulus1="Insulin+like+growth+factor"   ( default: Stimulus1="")}
 
-\item{Stimulus2}{: With which term the gene shall be searched in Pubmed? Stimulus2="epidermal+growth+factor"      ( default: Stimulus2="")}
+\item{Stimulus2}{Searches this term together with the gene name in PubMed. Stimulus2="epidermal+growth+factor"      ( default: Stimulus2="")}
 
-\item{S}{: Defines mode. S =="GO" changes programm to gene ontology mode  (default:  S="gene")}
+\item{S}{Defines mode. S =="GO" changes programm to gene ontology mode  (default:  S="gene")}
 
-\item{mapGO}{: Link genes to Gene Ontology terms  (default: mapGO="")}
+\item{mapGO}{Link genes to Gene Ontology terms  (default: mapGO="")}
 
-\item{PeakMode}{: Peakmode "norm" use variance between replicates, If you change to another character value, a normal hypothesis test will be conducted (default: PeakMode="norm")}
+\item{PeakMode}{Peakmode "norm" uses variance between replicates. If changed to another character value, a normal hypothesis test will be conducted (default: PeakMode="norm")}
 }
 \value{
-A table containing different significance values, rankings, p-values
+The R-package delivers a table with different significance values, rankings, p-values. Moreover, it will plot the most important time courses and quality control images.
 }
 \description{
-The analysis of microarray time series promises a deeper insight into the dynamics of the cellular response
-following stimulation. A common observation in this type of data is that some genes respond with quick,
-transient dynamics, while other genes change their expression slowly over time. The existing methods for the
-detection of significant expression dynamics often fail when the expression dynamics show a large
-heterogeneity, and often cannot cope with irregular and sparse measurements. The method proposed here is
-specifically designed for the analysis of perturbation responses. It combines different scores to capture fast and
-transient dynamics as well as slow expression changes, and deals with low replicate numbers and irregular
-sampling times. The results are given in the form of tables linked to figures. These allow to quickly recognize
-the relevance of detection, to identify possible false positives and to distinguish between changes in the early
-and later expression. An extension of the method allows the analysis of the expression dynamics of functional
-groups of genes, providing a quick overview of the cellular response. The performance of this package was
-tested on microarray data derived from lung cancer cells stimulated with epidermal growth factor.
-The related publication has been submitted to BMC Bioinformatics on 19.06.2016.
-The manuscript title is "TTCA: An R package for the identification of differentially expressed genes in time course microarray data".
+Background: The analysis of microarray time series promises a deeper insight into the dynamics of the cellular response following stimulation. A common observation in this type of data is that some genes respond with quick, transient dynamics, while other genes change their expression slowly over time. The existing methods for detecting significant expression dynamics often fail when the expression dynamics show a large heterogeneity. Moreover, these methods often cannot cope with irregular and sparse measurements.
+Results: The method proposed here is specifically designed for the analysis of perturbation responses. It combines different scores to capture fast and transient dynamics as well as slow expression changes, and performs well in the presence of low replicate numbers and irregular sampling times. The results are given in the form of tables including links to figures showing the expression dynamics of the respective transcript. These allow to quickly recognise the relevance of detection, to identify possible false positives and to discriminate early and late changes in gene expression. An extension of the method allows the analysis of the expression dynamics of functional groups of genes, providing a quick overview of the cellular response. The performance of this package was tested on microarray data derived from lung cancer cells stimulated with epidermal growth factor (EGF).
+Paper: Albrecht, Marco, et al. (2017)<DOI:10.1186/s12859-016-1440-8>.
 }
 \details{
-See publication "TTCA: An R package for the identification of differentially expressed genes in time course microarray data"
+The package has not be applied to Hi-Seq data yet. The problem is the huge variety in the read counts. An additional transformation of normalized Hi-Seq data might be an option to scale the values between two values like 0 and 1 (Simple idea: Datalog<-log(data, base = max(data))). Not tested. IF you are interested to adjust my package to sequence data, feel free to contact me.
 }
 \examples{
 \dontrun{
+
 ##########################################
 #### Gene-ANALYSE
 ##########################################
+require(quantreg);require(VennDiagram);require(tcltk2); require(tcltk);
+require(RISmed);require(Matrix)
 data(EGF,Control,annot,annotation)
+
 S="gene"
 Control.time <-  c(0,0,0.5,1,4,6,24,24,48,48,48)
 EGF.time     <-  c(0,0,0.5,0.5,1,2,4,6,8,12,18,24,24,48,48,48)
@@ -90,6 +83,11 @@ TTCAresult<-TTCA(grp1=EGF, grp1.time=EGF.time, grp2=Control, grp2.time=Control.t
 ##########################################
 #### GO-ANALYSE
 ##########################################
+require(quantreg);require(VennDiagram);require(tcltk2); require(tcltk);
+require(RISmed);require(Matrix)
+#source("https://bioconductor.org/biocLite.R")
+#biocLite("biomaRt")
+library(biomaRt)
 data(EGF,Control,annot,annotation)
 
 require(biomaRt)
