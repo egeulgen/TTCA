@@ -1333,7 +1333,9 @@ medianr = function(i, dat, xx ,w,k,prg,dynScor)
 # like medianr but with fitted values as additional feedback
 medianrS = function(i, dat, xx ,w,k,prg,dynScor)
 {
-  res <- rqss(as.numeric(dat[i,]) ~ qss(xx,lambda=0.6), tau = 0.5) #knots/estimated Intensity for each time point
+  tmp_df <- data.frame(response = as.numeric(dat[i, ]),
+                       xx = xx)
+  res <- rqss(response ~ qss(xx, lambda = 0.6), tau = 0.5, data = tmp_df) #knots/estimated Intensity for each time point
   res$coef[2:length(res$coef)]=res$coef[2:length(res$coef)]+  res$coef[1]
   res<-res$coef
   z1<-rle(xx[order(xx)])$lengths   # replikates per timepoint
