@@ -114,7 +114,7 @@ visualize_profile <-  function (gene_symbol, TTCA_result, grp1, grp1.time, grp2,
     title(main = name, cex = cex1)
     legend("bottom", "groups", c("case", 
                                  "control"), pch = c(1, 4), 
-           col = c("red", "blue"), ncol = 1, 
+           col = c("red", "blue"), ncol = 2, 
            bty = "n")
     
     idx <- which(TTCA_result$gene_name == gene_symbol)
