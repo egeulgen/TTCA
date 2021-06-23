@@ -10,7 +10,7 @@ LazyData: TRUE
 License: EUPL
 Depends: R(>= 2.10)
 Imports: Matrix, quantreg, tcltk2, RISmed, VennDiagram, MASS
-RoxygenNote: 5.0.1
+RoxygenNote: 7.1.1
 NeedsCompilation: no
 Packaged: 2017-01-29 16:50:06 UTC; Marco Albrecht
 Repository: CRAN
