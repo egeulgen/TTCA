@@ -4,10 +4,25 @@
 \alias{TTCA}
 \title{TTCA: Transcript Time Course Analysis}
 \usage{
-TTCA(grp1, grp1.time, grp2, grp2.time, lambda = 0.6, annot = NA,
-  annotation = "annotation", timeInt = NULL, pVal = 0.05,
-  codetest = FALSE, file = getwd(), MaxPics = 10000, Stimulus1 = "",
-  Stimulus2 = "", S = "gene", mapGO = "", PeakMode = "norm")
+TTCA(
+  grp1,
+  grp1.time,
+  grp2,
+  grp2.time,
+  lambda = 0.6,
+  annot = NA,
+  annotation = "annotation",
+  timeInt = NULL,
+  pVal = 0.05,
+  codetest = FALSE,
+  file = getwd(),
+  MaxPics = 10000,
+  Stimulus1 = "",
+  Stimulus2 = "",
+  S = "gene",
+  mapGO = "",
+  PeakMode = "norm"
+)
 }
 \arguments{
 \item{grp1}{Data set with longitudinal sampled data (data.frame)}
@@ -109,4 +124,3 @@ TTCAresult<-TTCA(grp1=EGF, grp1.time=EGF.time, grp2=Control, grp2.time=Control.t
 }
 
 }
-
