@@ -74,6 +74,10 @@ visualize_profile <-  function (gene_symbol, TTCA_result, grp1, grp1.time, grp2,
     } else {
         cex1 = 1.2
     }
+    
+    if (!gene_symbol %in% annot$gene_name)
+        stop("The gene ", dQuote(gene_symbol), " not in the expression data")
+    
     probe_id <- annot$probeset_id[annot$gene_name == gene_symbol]
     
     pos <- which(rownames(grp1) == probe_id)
