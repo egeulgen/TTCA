@@ -1289,7 +1289,7 @@ DistplotPval<-function(x1,xlab="value",main="Null hypothesis versus alternative 
   nbox=150 #number of boxes in destribution
   xfit<-seq(min(x1,na.rm = TRUE),max(x1,na.rm = TRUE),length=2000)
   ## find optimal Method and Parameter for fit
-  d1   <-c(seq(0,(max(x1)+(max(x1)-min(x1)))+0.0001,(max(x1)-min(x1))/8),0.0001,0.001,0.01)# with focus around zero and small trend in positiv direction
+  d1   <-c(seq(0,(max(x1)+(max(x1)-min(x1)))+0.0001,(max(x1)-min(x1))/8 + 1e-5),0.0001,0.001,0.01)# with focus around zero and small trend in positiv direction
   d1   <-d1[order(d1)]
   dmax <-max(abs(d1))
   d3<-d2   <-1:length(d1)*NA
