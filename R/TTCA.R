@@ -1300,6 +1300,7 @@ DistplotPval<-function(x1,xlab="value",main="Null hypothesis versus alternative 
     rm(A)
   }
   bestMethod<-d3[which(d2==max(d2,na.rm = TRUE))[1]]
+  bestMethod <- ifelse(is.na(bestMethod), d3[1], bestMethod)
   delta<-d1[which(d2==max(d2,na.rm = TRUE))[1]]
   delta <- ifelse(is.na(delta), 0, delta)
   ## transformation
