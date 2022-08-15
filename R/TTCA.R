@@ -1215,9 +1215,9 @@ Integral<-function(dat="grp1.grp2", grp="grp", timeInt= "timeInt",grp1.time="grp
   dat1 = as.numeric(dat[ grp==1])
   dat2 = as.numeric(dat[ grp==2])
   #Identify time gaps
-  time=unique(c(grp1.time,grp2.time, timeInt))
-  tim1<-time[!(time %in% grp1.time)]
-  tim2<-time[!(time %in% grp2.time)]
+  time <- sort(unique(c(grp1.time,grp2.time, timeInt)))
+  tim1 <- time[!(time %in% grp1.time)]
+  tim2 <- time[!(time %in% grp2.time)]
   # Gives a table: 1 row: measurements and missing values (NA)
   #                2 row: time points
   RB1<- RB2<-rbind(rep(NA,length(time)),time)
