@@ -1289,7 +1289,7 @@ DistplotPval<-function(x1,xlab="value",main="Null hypothesis versus alternative 
   nbox=150 #number of boxes in destribution
   xfit<-seq(min(x1,na.rm = TRUE),max(x1,na.rm = TRUE),length=2000)
   ## find optimal Method and Parameter for fit
-  d1   <-c(seq(0,(max(x1)+(max(x1)-min(x1)))+0.0001,(max(x1)-min(x1))/8 + 1e-5),0.0001,0.001,0.01)# with focus around zero and small trend in positiv direction
+  d1   <-c(seq(0,(max(x1)+(max(x1)-min(x1)))+0.0001,(max(x1)-min(x1))/8),0.0001,0.001,0.01)# with focus around zero and small trend in positiv direction
   d1   <-d1[order(d1)]
   dmax <-max(abs(d1))
   d3<-d2   <-1:length(d1)*NA
@@ -1300,9 +1300,7 @@ DistplotPval<-function(x1,xlab="value",main="Null hypothesis versus alternative 
     rm(A)
   }
   bestMethod<-d3[which(d2==max(d2,na.rm = TRUE))[1]]
-  bestMethod <- ifelse(is.na(bestMethod), d3[1], bestMethod)
   delta<-d1[which(d2==max(d2,na.rm = TRUE))[1]]
-  delta <- ifelse(is.na(delta), 0, delta)
   ## transformation
   x1 = x1 + delta
   xfit<-seq(min(x1,na.rm = TRUE),max(x1,na.rm = TRUE),length=2000)
@@ -1313,42 +1311,42 @@ DistplotPval<-function(x1,xlab="value",main="Null hypothesis versus alternative 
   fminforPval<-function(x, parG,pVal){
     a=abs(pVal-pcauchy(x,location=as.numeric(parG[]$estimate[1]),scale   = as.numeric(parG[]$estimate[2]),lower.tail = FALSE))
   }
-  upper= optimize(f = fminforPval , lower = min(x1),upper = max(x1) + 1e-10, maximum = FALSE,tol = .0000001,parG=parG,pVal=pVal   )$minimum
+  upper= optimize(f = fminforPval , lower = min(x1),upper = max(x1), maximum = FALSE,tol = .0000001,parG=parG,pVal=pVal   )$minimum
   }
   if(bestMethod=="gamma")    {yfit<-dgamma(xfit,shape=as.numeric(parG[]$estimate[1]), rate = as.numeric(parG[]$estimate[2]))
   Res[,name2]= apply(X=Res[,name1,drop=FALSE],MARGIN=1, function(x) pgamma((x+delta),shape=as.numeric(parG[]$estimate[1]), rate = as.numeric(parG[]$estimate[2]),lower.tail = FALSE)) #Pval=P[X > x]
   fminforPval<-function(x, parG,pVal){
     a=abs(pVal-pgamma(x,shape=as.numeric(parG[]$estimate[1]), rate = as.numeric(parG[]$estimate[2]),lower.tail = FALSE))
   }
-  upper= optimize(f = fminforPval , lower = min(x1),upper = max(x1) + 1e-10, maximum = FALSE,tol = .0000001,parG=parG,pVal=pVal   )$minimum
+  upper= optimize(f = fminforPval , lower = min(x1),upper = max(x1), maximum = FALSE,tol = .0000001,parG=parG,pVal=pVal   )$minimum
   }
   if(bestMethod=="lognormal"){yfit<-dlnorm(xfit,meanlog=as.numeric(parG[]$estimate[1]), sdlog = as.numeric(parG[]$estimate[2]))
   Res[,name2]= apply(X=Res[,name1,drop=FALSE],MARGIN=1, function(x) plnorm((x+delta),meanlog=as.numeric(parG[]$estimate[1]), sdlog = as.numeric(parG[]$estimate[2]),lower.tail = FALSE)) #Pval=P[X > x]
   fminforPval<-function(x,parG,pVal){
     a=abs(pVal-plnorm(x,meanlog=as.numeric(parG[]$estimate[1]), sdlog = as.numeric(parG[]$estimate[2]),lower.tail = FALSE))
   }
-  upper= optimize(f = fminforPval , lower = min(x1),upper = max(x1) + 1e-10, maximum = FALSE,tol = .0000001,  parG=parG,pVal=pVal   )$minimum
+  upper= optimize(f = fminforPval , lower = min(x1),upper = max(x1), maximum = FALSE,tol = .0000001,  parG=parG,pVal=pVal   )$minimum
   }
   if(bestMethod=="logistic") {yfit<-dlogis(xfit,location=as.numeric(parG[]$estimate[1]),scale   = as.numeric(parG[]$estimate[2]))
   Res[,name2]= apply(X=Res[,name1,drop=FALSE],MARGIN=1, function(x) plogis((x+delta),location=as.numeric(parG[]$estimate[1]),scale   = as.numeric(parG[]$estimate[2]),lower.tail = FALSE)) #Pval=P[X > x]
   fminforPval<-function(x, parG,pVal){
     a=abs(pVal - plogis(x,location=as.numeric(parG[]$estimate[1]),scale   = as.numeric(parG[]$estimate[2]),lower.tail = FALSE))
   }
-  upper= optimize(f = fminforPval , lower = min(x1),upper = max(x1) + 1e-10, maximum = FALSE,tol = .0000001,parG=parG,pVal=pVal   )$minimum
+  upper= optimize(f = fminforPval , lower = min(x1),upper = max(x1), maximum = FALSE,tol = .0000001,parG=parG,pVal=pVal   )$minimum
   }
   if(bestMethod=="normal")   {yfit<-dnorm(xfit,mean=as.numeric(parG[]$estimate[1]), sd = as.numeric(parG[]$estimate[2]))
   Res[,name2]= apply(X=Res[,name1,drop=FALSE],MARGIN=1, function(x) pnorm((x+delta),mean=as.numeric(parG[]$estimate[1]), sd = as.numeric(parG[]$estimate[2]),lower.tail = FALSE)) #Pval=P[X > x]
   fminforPval<-function(x, parG,pVal){
     a=abs(pVal - pnorm(x,mean=as.numeric(parG[]$estimate[1]), sd = as.numeric(parG[]$estimate[2]),lower.tail = FALSE))
   }
-  upper= optimize(f = fminforPval , lower = min(x1),upper = max(x1) + 1e-10, maximum = FALSE,tol = .0000001, parG=parG,pVal=pVal   )$minimum
+  upper= optimize(f = fminforPval , lower = min(x1),upper = max(x1), maximum = FALSE,tol = .0000001, parG=parG,pVal=pVal   )$minimum
   }
   if(bestMethod=="weibull")  {yfit<-dweibull(xfit,shape = as.numeric(parG[]$estimate[1]),scale   = as.numeric(parG[]$estimate[2]))
   Res[,name2]= apply(X=Res[,name1,drop=FALSE],MARGIN=1, function(x) pweibull((x+delta),shape = as.numeric(parG[]$estimate[1]),scale   = as.numeric(parG[]$estimate[2]),lower.tail = FALSE)) #Pval=P[X > x]
   fminforPval<-function(x, parG,pVal){
     a=abs(pVal - pweibull(x,shape = as.numeric(parG[]$estimate[1]),scale   = as.numeric(parG[]$estimate[2]),lower.tail = FALSE))
   }
-  upper= optimize(f = fminforPval , lower = min(x1),upper = max(x1) + 1e-10, maximum = FALSE,tol = .0000001,  parG=parG,pVal=pVal   )$minimum
+  upper= optimize(f = fminforPval , lower = min(x1),upper = max(x1), maximum = FALSE,tol = .0000001,  parG=parG,pVal=pVal   )$minimum
   }
 
   yfit   =yfit*diff(hist(x1,breaks=nbox,plot = FALSE)$mids[1:2])*length(x1)
